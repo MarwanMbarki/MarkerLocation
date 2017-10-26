@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Predefined Marker Symbols</title>
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+         * element that contains the map. */
+        #map {
+            height: 100%;
+        }
+        /* Optional: Makes the sample page fill the window. */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        .map-container{
+            width: 60%;
+            height: 500px;
+            padding-left: 200px;
+            margin-left: 100px;
+            font-weight: 700;
+            color: #8f3091;
+            font-family: Georgia;
+        }
+        #lng{
+            padding-bottom: 30px;
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="map-container">
+    <h1>Marker location - <small>@MarwanMbarki</small></h1>
+    <div id="lat"></div>
+    <div id="lng"></div>
+    <div id="map"></div>
+
+</div>
+
+<script>
+    // This example uses a symbol to add a vector-based icon to a marker.
+    // The symbol uses one of the predefined vector paths ('CIRCLE') supplied by the
+    // Google Maps JavaScript API.
+
+    function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 14,
+            center: {lat: 55.9486867, lng: -3.1878714}
+        });
+
+        var marker = new google.maps.Marker({
+            position: map.getCenter(),
+            icon: {
+                path: google.maps.SymbolPath.MARKER,
+                scale: 10
+            },
+            draggable: true,
+            map: map
+        });
+
+
+        google.maps.event.addListener(marker, 'dragend', function () {
+            document.getElementById("lat").innerHTML = this.getPosition().lat();
+            document.getElementById("lng").innerHTML = this.getPosition().lng();
+            console.log(lat);
+            console.log(lng);
+        });
+
+    }
+
+
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDiZWV6FYx8BPnoDTN8rZ2eMIS1FZ4HJsM&callback=initMap">
+</script>
+</body>
+</html>
+
